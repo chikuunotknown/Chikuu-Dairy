@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amul Products | SAM Dairy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="products-page">
+    <nav class="navbar" style="position: sticky; background: white;">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">SAM Dairy</a></div>
+        <div class="nav-links">
+            <a href="index.html#brands">Brands</a>
+            <a href="index.html#how-it-works">How it Works</a>
+            <a href="index.html#support">Support</a>
+        </div>
+        <div class="nav-actions">
+            <button class="cart-btn" id="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <button class="cta-btn small">Sign In</button>
+        </div>
+    </nav>
+
+    <header class="brand-header">
+        <div class="brand-header-content">
+            <img src="amul.png" alt="Amul Logo" class="brand-logo-large">
+            <h1>Fresh Amul Milk</h1>
+            <p>Select your favorite milk type and quantity for daily morning delivery.</p>
+        </div>
+    </header>
+
+    <div class="main-products-container">
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-badge">Full Cream</div>
+                <div class="product-info">
+                    <h3>Amul Gold</h3>
+                    <p class="desc">Rich, creamy, and packed with nutrients. Perfect for kids and making sweets.</p>
+                    
+                    <div class="variants">
+                        <label class="variant-option">
+                            <input type="radio" name="amul_gold" value="500ml" checked>
+                            <span class="variant-box">
+                                <span class="qty">500 ml</span>
+                                <span class="price">₹33</span>
+                            </span>
+                        </label>
+                        <label class="variant-option">
+                            <input type="radio" name="amul_gold" value="1L">
+                            <span class="variant-box">
+                                <span class="qty">1 L</span>
+                                <span class="price">₹66</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-badge blue">Toned Milk</div>
+                <div class="product-info">
+                    <h3>Amul Taaza</h3>
+                    <p class="desc">Light and healthy everyday milk for the whole family.</p>
+                    
+                    <div class="variants">
+                        <label class="variant-option">
+                            <input type="radio" name="amul_taaza" value="500ml" checked>
+                            <span class="variant-box">
+                                <span class="qty">500 ml</span>
+                                <span class="price">₹27</span>
+                            </span>
+                        </label>
+                        <label class="variant-option">
+                            <input type="radio" name="amul_taaza" value="1L">
+                            <span class="variant-box">
+                                <span class="qty">1 L</span>
+                                <span class="price">₹54</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-badge dark">Buffalo Milk</div>
+                <div class="product-info">
+                    <h3>Amul Buffalo</h3>
+                    <p class="desc">A2 rich, thick buffalo milk ideal for tea, coffee, and creamy curd.</p>
+                    
+                    <div class="variants">
+                        <label class="variant-option">
+                            <input type="radio" name="amul_buffalo" value="500ml" checked>
+                            <span class="variant-box">
+                                <span class="qty">500 ml</span>
+                                <span class="price">₹35</span>
+                            </span>
+                        </label>
+                        <label class="variant-option">
+                            <input type="radio" name="amul_buffalo" value="1L">
+                            <span class="variant-box">
+                                <span class="qty">1 L</span>
+                                <span class="price">₹70</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">₹0</span>
+            </div>
+            <button class="cta-btn primary full-width checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

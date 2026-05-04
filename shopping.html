@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Milk | SAM Dairy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="products-page">
+    <nav class="navbar" style="position: sticky; background: white;">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">SAM Dairy</a></div>
+        <div class="nav-links">
+            <a href="index.html#brands">Brands</a>
+            <a href="index.html#how-it-works">How it Works</a>
+        </div>
+        <div class="nav-actions">
+            <button class="cart-btn" id="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <button class="cta-btn small">Sign In</button>
+        </div>
+    </nav>
+
+    <header class="shopping-header">
+        <h1>Fresh Milk, <span class="highlight">Your Way</span></h1>
+        <p>Filter by your favorite type or browse all our premium milk options.</p>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Milk</button>
+            <button class="filter-btn" data-filter="full-cream">Full Cream</button>
+            <button class="filter-btn" data-filter="toned">Toned</button>
+            <button class="filter-btn" data-filter="cow">Cow</button>
+            <button class="filter-btn" data-filter="buffalo">Buffalo</button>
+        </div>
+    </header>
+
+    <div class="main-products-container">
+        <div class="products-grid" id="all-products-grid">
+            <!-- Amul Gold -->
+            <div class="product-card" data-category="full-cream">
+                <div class="product-badge">Full Cream</div>
+                <div class="product-brand-logo"><img src="amul.png" alt="Amul"></div>
+                <div class="product-info">
+                    <h3>Amul Gold</h3>
+                    <p class="desc">Rich, creamy, and packed with nutrients. Perfect for kids and making sweets.</p>
+                    <div class="variants">
+                        <label class="variant-option"><input type="radio" name="sg_amul_gold" value="500ml" checked><span class="variant-box"><span class="qty">500 ml</span><span class="price">₹33</span></span></label>
+                        <label class="variant-option"><input type="radio" name="sg_amul_gold" value="1L"><span class="variant-box"><span class="qty">1 L</span><span class="price">₹66</span></span></label>
+                    </div>
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Mother Dairy Toned -->
+            <div class="product-card" data-category="toned">
+                <div class="product-badge blue">Toned Milk</div>
+                <div class="product-brand-logo"><img src="motherdairy.png" alt="Mother Dairy"></div>
+                <div class="product-info">
+                    <h3>Mother Dairy Toned</h3>
+                    <p class="desc">Perfectly balanced daily milk with reduced fat for a healthy lifestyle.</p>
+                    <div class="variants">
+                        <label class="variant-option"><input type="radio" name="sg_md_toned" value="500ml" checked><span class="variant-box"><span class="qty">500 ml</span><span class="price">₹27</span></span></label>
+                        <label class="variant-option"><input type="radio" name="sg_md_toned" value="1L"><span class="variant-box"><span class="qty">1 L</span><span class="price">₹54</span></span></label>
+                    </div>
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Gowardhan Cow -->
+            <div class="product-card" data-category="cow">
+                <div class="product-badge" style="background:#48bb78;">Cow Milk</div>
+                <div class="product-brand-logo"><img src="parag.png" alt="Parag"></div>
+                <div class="product-info">
+                    <h3>Gowardhan Cow Milk</h3>
+                    <p class="desc">Parag's signature fresh farm cow milk, completely pure and untouched.</p>
+                    <div class="variants">
+                        <label class="variant-option"><input type="radio" name="sg_pg_cow" value="500ml" checked><span class="variant-box"><span class="qty">500 ml</span><span class="price">₹29</span></span></label>
+                        <label class="variant-option"><input type="radio" name="sg_pg_cow" value="1L"><span class="variant-box"><span class="qty">1 L</span><span class="price">₹58</span></span></label>
+                    </div>
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Amul Buffalo -->
+            <div class="product-card" data-category="buffalo">
+                <div class="product-badge dark">Buffalo Milk</div>
+                <div class="product-brand-logo"><img src="amul.png" alt="Amul"></div>
+                <div class="product-info">
+                    <h3>Amul Buffalo</h3>
+                    <p class="desc">A2 rich, thick buffalo milk ideal for tea, coffee, and creamy curd.</p>
+                    <div class="variants">
+                        <label class="variant-option"><input type="radio" name="sg_amul_buffalo" value="500ml" checked><span class="variant-box"><span class="qty">500 ml</span><span class="price">₹35</span></span></label>
+                        <label class="variant-option"><input type="radio" name="sg_amul_buffalo" value="1L"><span class="variant-box"><span class="qty">1 L</span><span class="price">₹70</span></span></label>
+                    </div>
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+
+            <!-- Nandini Special -->
+            <div class="product-card" data-category="full-cream">
+                <div class="product-badge">Special</div>
+                <div class="product-brand-logo"><img src="nandini.png" alt="Nandini"></div>
+                <div class="product-info">
+                    <h3>Nandini Special Milk</h3>
+                    <p class="desc">Homogenized special milk that is thicker, richer, and creamier.</p>
+                    <div class="variants">
+                        <label class="variant-option"><input type="radio" name="sg_nd_special" value="500ml" checked><span class="variant-box"><span class="qty">500 ml</span><span class="price">₹26</span></span></label>
+                        <label class="variant-option"><input type="radio" name="sg_nd_special" value="1L"><span class="variant-box"><span class="qty">1 L</span><span class="price">₹52</span></span></label>
+                    </div>
+                    <button class="cta-btn primary full-width">Add to Subscription</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">₹0</span>
+            </div>
+            <button class="cta-btn primary full-width checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Interactive Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('#all-products-grid .product-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    productCards.forEach(card => {
+                        if(filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            // Subtle animation
+                            card.style.animation = 'fadeIn 0.4s ease forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
