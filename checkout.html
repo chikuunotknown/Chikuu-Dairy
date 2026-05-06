@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | SAM Dairy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-page {
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 100px 5% 50px;
+        }
+        .checkout-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .checkout-container { grid-template-columns: 1fr; }
+        }
+        .checkout-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .checkout-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .payment-method {
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .payment-method.active {
+            border-color: var(--primary);
+            background: #fffaf5;
+        }
+        .payment-method i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: var(--secondary);
+        }
+        .payment-method.active i { color: var(--primary); }
+
+        .payment-form-section { display: none; }
+        .payment-form-section.active { display: block; animation: fadeIn 0.3s ease; }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .summary-total {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            color: var(--secondary);
+        }
+        .success-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: #48bb78;
+            margin-bottom: 2rem;
+            animation: scaleUp 0.5s ease;
+        }
+        @keyframes scaleUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="position: fixed; background: white;">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">SAM Dairy</a></div>
+    </nav>
+
+    <div class="checkout-page">
+        <div class="checkout-container">
+            <!-- Left: Payment Form -->
+            <div class="checkout-box">
+                <h2 class="checkout-title"><i class="fa-solid fa-credit-card"></i> Payment Details</h2>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" onclick="switchPayment('card')">
+                        <i class="fa-solid fa-credit-card"></i>
+                        Card
+                    </div>
+                    <div class="payment-method" onclick="switchPayment('upi')">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        UPI
+                    </div>
+                </div>
+
+                <div id="card-form" class="payment-form-section active">
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" placeholder="Full Name" class="full-width">
+                    </div>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="XXXX XXXX XXXX XXXX" class="full-width">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="password" placeholder="***">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="upi-form" class="payment-form-section">
+                    <div style="text-align: center; padding: 1rem;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=chikuu0012@okaxis" alt="UPI QR" style="margin-bottom: 1rem; border: 1px solid #ddd; padding: 10px; border-radius: 10px;">
+                        <p style="color: var(--text-muted);">Scan QR to pay with any UPI app</p>
+                        <p style="font-weight: 700; margin-top: 0.5rem;">OR</p>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <input type="text" placeholder="Enter UPI ID (e.g. user@upi)" class="full-width" style="text-align: center;">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="cta-btn primary full-width" style="margin-top: 2rem;" onclick="processPayment()">Complete Payment</button>
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="checkout-box" style="height: fit-content;">
+                <h2 class="checkout-title"><i class="fa-solid fa-receipt"></i> Order Summary</h2>
+                <div id="checkout-summary-list">
+                    <!-- Items injected by JS -->
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total Amount</span>
+                    <span id="final-total">₹0</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2rem;">
+                    <i class="fa-solid fa-lock"></i> Your transaction is secured with 256-bit encryption.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h1 style="font-size: 2.5rem; color: var(--secondary);">Payment Successful!</h1>
+        <p style="margin: 1rem 0 2rem; color: var(--text-muted); font-size: 1.2rem;">Your fresh milk will reach your doorstep by 7:00 AM tomorrow.</p>
+        <button class="cta-btn primary" onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        // Load Summary from LocalStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('samDairyCart')) || [];
+            const summaryList = document.getElementById('checkout-summary-list');
+            let total = 0;
+
+            if(cart.length === 0) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = 'summary-item';
+                div.innerHTML = `
+                    <span>${item.name} (${item.variant} x ${item.quantity})</span>
+                    <span>₹${item.price * item.quantity}</span>
+                `;
+                summaryList.appendChild(div);
+            });
+
+            document.getElementById('final-total').innerText = '₹' + total;
+        });
+
+        function switchPayment(method) {
+            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.payment-form-section').forEach(el => el.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(method + '-form').classList.add('active');
+        }
+
+        function processPayment() {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                localStorage.removeItem('samDairyCart'); // Clear cart on success
+                document.getElementById('success-overlay').style.display = 'flex';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
