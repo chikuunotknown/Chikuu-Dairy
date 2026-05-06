@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Your cart is empty!');
                 return;
             }
-            alert('Proceeding to checkout...');
+            window.location.href = 'checkout.html';
         });
     }
 
